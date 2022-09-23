@@ -1,14 +1,15 @@
 <template>
     <section class="is-flex is-align-items-center is-justify-content-space-between">
-      <Cronometro :tempoEmSegundos="tempoEmSegundos"/>
-      <Botao @clicado="iniciar" icone="fas fa-play" texto="play" :desabilitado="cronometroRodando" />
-      <Botao @clicado="finalizar" icone="fas fa-stop" texto="stop" :desabilitado="!cronometroRodando" />
+        <Cronometro :tempoEmSegundos="tempoEmSegundos" />
+        <Botao @clicado="iniciar" icone="fas fa-play" texto="play" :desabilitado="cronometroRodando" />
+        <Botao @clicado="finalizar" icone="fas fa-stop" texto="stop" :desabilitado="!cronometroRodando" />
     </section>
-  </template>
+</template>
   
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Cronometro from './Cronometro.vue';
+import Botao from './Botao.vue';
 
 export default defineComponent({
     // eslint-disable-next-line 
@@ -35,6 +36,9 @@ export default defineComponent({
             this.tempoEmSegundos = 0;
         }
     },
-    components: { Cronometro }
+    components: {
+        Cronometro,
+        Botao
+    }
 });
 </script>
