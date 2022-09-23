@@ -2,34 +2,37 @@
     <div class="box">
         <div class="columns">
             <div class="column is-8" role="form" area-label="Formulário para criação de uma nova tarefa">
-                <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?">
+                <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?" v-model="descricao">
             </div>
             <div class="column">
-                <div class="is-flex is-align-items-center is-justify-content-space-between"></div>
-                <section>
-                    <strong>00:00:00</strong>
-                </section>
-                <button class="button">
-                    <span class="icon">
-                        <i class="fas fa-play"></i>
-                    </span>
-                    <span>play</span>
-                </button>
-                <button class="button">
-                    <span class="icon">
-                        <i class="fas fa-stop"></i>
-                    </span>
-                    <span>stop</span>
-                </button>
+                <Temporizador @aoTemporizadorFinalizado="finalizarTarefa" />
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, DefineComponent } from 'vue';
+import { defineComponent } from 'vue';
+import Temporizador from './Temporizador.vue';
+
 export default defineComponent({
-    name: 'FormularioTarefa'
+    // eslint-disable-next-line 
+    name: "Formulario",
+    components: {
+        Temporizador
+    },
+    data(){
+        return{
+            descricao: ''
+        }
+    },
+    methods: {
+        finalizarTarefa(tempoDecorrido: number): void {
+            console.log('tempo da tarefa foi: ', tempoDecorrido);
+            console.log('descricao da tarefa: ', this.descricao);
+            this.descricao = '';
+        }
+    }
 });
 </script>
 
