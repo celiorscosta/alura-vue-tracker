@@ -10,7 +10,7 @@
 import { defineComponent } from "vue";
 import Formulario from "../components/FormularioTarefa.vue";
 import Tarefa from "../components/Tarefa.vue";
-import ITarefa from "../interfaces/ITarefas";
+import ITarefa from "../interfaces/ITarefa";
 import Box from "../components/Box.vue";
 
 export default defineComponent({
