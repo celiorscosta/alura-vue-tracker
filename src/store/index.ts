@@ -2,12 +2,14 @@ import { INotificacao } from "@/interfaces/INotificacao";
 import IProjeto from "@/interfaces/IProjeto";
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUsestore } from "vuex";
-import { ALTERAR_PROJETO, CADASTRAR_PROJETO, OBTER_PROJETOS, REMOVER_PROJETO } from "./tipo-acoes";
-import { ADICIONA_PROJETO, ALTERA_PROJETO, DEFINIR_PROJETOS, EXCLUIR_PROJETO, NOTIFICAR } from "./tipo-mutacoes";
+import { ALTERAR_PROJETO, CADASTRAR_PROJETO, CADASTRAR_TAREFA, OBTER_PROJETOS, OBTER_TAREFAS, REMOVER_PROJETO } from "./tipo-acoes";
+import { ADICIONAR_TAREFAS, ADICIONA_PROJETO, ALTERA_PROJETO, DEFINIR_PROJETOS, DEFINIR_TAREFAS, EXCLUIR_PROJETO, NOTIFICAR } from "./tipo-mutacoes";
 import http from "@/http";
+import ITarefa from "@/interfaces/ITarefa";
 
 interface Estado {
     projetos: IProjeto[],
+    tarefas: ITarefa[],
     notificacoes: INotificacao[]
 }
 
@@ -16,6 +18,7 @@ export const key: InjectionKey<Store<Estado>> = Symbol();
 export const store = createStore<Estado>({
     state: {
         projetos: [],
+        tarefas: [],
         notificacoes: []
     },
     mutations: {
@@ -43,7 +46,14 @@ export const store = createStore<Estado>({
             setTimeout(() => {
                 state.notificacoes = state.notificacoes.filter(notif => notif.id != novaNotificacao.id);
             }, 3000);
-        }
+        },
+        // TAREFAS
+        [ADICIONAR_TAREFAS](state, tarefa: ITarefa) {           
+            state.tarefas.push(tarefa);
+        },
+        [DEFINIR_TAREFAS](state, tarefas: ITarefa[]) {
+            state.tarefas = tarefas;
+        },
 
     },
     actions: {
@@ -52,16 +62,25 @@ export const store = createStore<Estado>({
                 .then(res => commit(DEFINIR_PROJETOS, res.data));
         },
         [CADASTRAR_PROJETO](contexto, nomeDoProjeto: string) {
-            return http.post('/projetos', {
+            return http.post('projetos', {
                 nome: nomeDoProjeto
             });
         },
         [ALTERAR_PROJETO](contexto, projeto: IProjeto) {
-            return http.put(`/projetos/${projeto.id}`, projeto);
+            return http.put(`projetos/${projeto.id}`, projeto);
         },
         [REMOVER_PROJETO]({ commit }, id: string) {
-            return http.delete(`/projetos/${id}`).then(() => commit(EXCLUIR_PROJETO, id));
-        }
+            return http.delete(`projetos/${id}`).then(() => commit(EXCLUIR_PROJETO, id));
+        },
+        // TAREFAS
+        [OBTER_TAREFAS]({ commit }) {
+            http.get('tarefas')
+                .then(res => commit(DEFINIR_TAREFAS, res.data));
+        },
+        [CADASTRAR_TAREFA]({ commit }, tarefa: ITarefa) {
+            return http.post('tarefas', tarefa)
+                .then(res => commit(ADICIONAR_TAREFAS, res.data));
+        },
     }
 });
 

@@ -12,6 +12,7 @@
   "tarefas": [
     {
       "id": 1,
+      "duracaoEmSegundos": 120,
       "descricao": "Configuração do ambiente",
       "projeto": {
         "id": 1,
@@ -19,12 +20,22 @@
       }
     },
     {
+      "duracaoEmSegundos": 160,
       "descricao": "Refatoração do vuex 4",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker 3.0"
       },
       "id": 2
+    },
+    {
+      "duracaoEmSegundos": 6,
+      "descricao": "Refatorando",
+      "projeto": {
+        "id": 2,
+        "nome": "ByteBank 2.1"
+      },
+      "id": 3
     }
   ]
 }
