@@ -7,28 +7,29 @@
       :key="notificacao.id"
     >
       <div class="message-header">{{ notificacao.titulo }}</div>
-      <div class="message-body">{{ notificacao.texto }}</div>
+      <div class="message-body">
+        {{ notificacao.texto }}
+      </div>
     </article>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
-import { computed } from "@vue/reactivity";
-import { TipoDeNotificacao } from "@/interfaces/INotificacao";
+import { TipoNotificacao } from "@/interfaces/INotificacao";
 
 export default defineComponent({
-  // eslint-disable-next-line
-  name: "NotificacoesComp",
-  data() {
+    // eslint-disable-next-line 
+  name: "Notificacoes",
+  data () {
     return {
       contexto: {
-        [TipoDeNotificacao.SUCESSO]: "is-success",
-        [TipoDeNotificacao.ATENCAO]: "is-warning",
-        [TipoDeNotificacao.FALHA]: "is-danger",
-      },
-    };
+        [TipoNotificacao.SUCESSO]: 'is-success',
+        [TipoNotificacao.ATENCAO]: 'is-warning',
+        [TipoNotificacao.FALHA]: 'is-danger',
+      }
+    }
   },
   setup() {
     const store = useStore();
@@ -45,6 +46,6 @@ export default defineComponent({
   right: 0;
   width: 300px;
   padding: 8px;
-  z-index: 1;
+  z-index: 105;
 }
 </style>

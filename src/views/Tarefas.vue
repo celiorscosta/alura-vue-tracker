@@ -44,22 +44,22 @@
   </div>
 </template>
 
-
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import Formulario from "../components/FormularioTarefa.vue";
+import { computed, defineComponent } from "vue";
+import Formulario from "../components/Formulario.vue";
 import Tarefa from "../components/Tarefa.vue";
 import Box from "../components/Box.vue";
 import { useStore } from "@/store";
 import {
-  OBTER_TAREFAS,
+  ALTERAR_TAREFA,
   CADASTRAR_TAREFA,
   OBTER_PROJETOS,
-  ALTERAR_TAREFA,
+  OBTER_TAREFAS,
 } from "@/store/tipo-acoes";
 import ITarefa from "@/interfaces/ITarefa";
 
 export default defineComponent({
+    // eslint-disable-next-line 
   name: "App",
   components: {
     Formulario,
@@ -72,7 +72,7 @@ export default defineComponent({
     };
   },
   methods: {
-    salvarTarefa(tarefa: ITarefa) : void {
+    salvarTarefa(tarefa: ITarefa) {
       this.store.dispatch(CADASTRAR_TAREFA, tarefa);
     },
     selecionarTarefa(tarefa: ITarefa) {
@@ -81,11 +81,10 @@ export default defineComponent({
     fecharModal() {
       this.tarefaSelecionada = null;
     },
-    alterarTarefa() {
-      this.store
-        .dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
-        .then(() => this.fecharModal());
-    },
+    alterarTarefa () {
+      this.store.dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
+        .then(() => this.fecharModal())
+    }
   },
   computed: {
     semTarefas(): boolean {
@@ -97,7 +96,7 @@ export default defineComponent({
     store.dispatch(OBTER_TAREFAS);
     store.dispatch(OBTER_PROJETOS);
     return {
-      tarefas: computed(() => store.state.tarefas),
+      tarefas: computed(() => store.state.tarefa.tarefas),
       store,
     };
   },

@@ -4,15 +4,16 @@
       <span class="icon is-small">
         <i class="fas fa-plus"></i>
       </span>
-      <span>Novo Projeto</span>
-    </router-link>
-
+      <span>Novo projeto</span>
+    </router-link> 
     <table class="table is-fullwidth">
       <thead>
         <tr>
           <th>ID</th>
           <th>Nome</th>
-          <th>Ações</th>
+          <th>
+            Ações
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -39,24 +40,24 @@
 
 <script lang="ts">
 import { useStore } from "@/store";
-import { OBTER_PROJETOS, REMOVER_PROJETO } from "@/store/tipo-acoes";
 import { computed, defineComponent } from "vue";
+import { OBTER_PROJETOS, REMOVER_PROJETO } from "@/store/tipo-acoes";
 
 export default defineComponent({
-  // eslint-disable-next-line
+    // eslint-disable-next-line 
   name: "Lista",
   methods: {
-    excluir(id: string){
-        this.store.dispatch(REMOVER_PROJETO, id)
+    excluir (id: string) {
+      this.store.dispatch(REMOVER_PROJETO, id)
     }
   },
-  setup() {
-    const store = useStore();
-    store.dispatch(OBTER_PROJETOS);
+  setup () {
+    const store = useStore()
+    store.dispatch(OBTER_PROJETOS)
     return {
-      projetos: computed(() => store.state.projetos),
+      projetos: computed(() => store.state.projeto.projetos),
       store
-    };
-  },
+    }
+  }
 });
 </script>

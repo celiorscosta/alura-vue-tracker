@@ -6,16 +6,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  // eslint-disable-next-line
-  name: "Projetos",
-});
+    // eslint-disable-next-line 
+  name: 'Projetos'
+})
+
 </script>
 
 <style scoped>
-  .projetos {
-    padding: 1.25rem;
-  }
-  </style>
+.projetos {
+  padding: 1.25rem;
+}
+</style>

@@ -5,16 +5,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  // eslint-disable-next-line
-  name: "Box",
+    // eslint-disable-next-line 
+  name: 'Box'
 });
 </script>
 
 <style scoped>
 .box {
-  background: #faf0ca;
+  background: #FAF0CA;
 }
 </style>
