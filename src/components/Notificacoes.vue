@@ -20,7 +20,7 @@ import { useStore } from "@/store";
 import { TipoNotificacao } from "@/interfaces/INotificacao";
 
 export default defineComponent({
-    // eslint-disable-next-line 
+  // eslint-disable-next-line
   name: "Notificacoes",
   data () {
     return {

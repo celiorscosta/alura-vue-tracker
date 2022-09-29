@@ -44,7 +44,7 @@ import { computed, defineComponent } from "vue";
 import { OBTER_PROJETOS, REMOVER_PROJETO } from "@/store/tipo-acoes";
 
 export default defineComponent({
-    // eslint-disable-next-line 
+  // eslint-disable-next-line
   name: "Lista",
   methods: {
     excluir (id: string) {

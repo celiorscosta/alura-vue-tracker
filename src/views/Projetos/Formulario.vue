@@ -36,16 +36,29 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const router = useRouter();
+    
+    const router = useRouter()
+
     const store = useStore();
     const { notificar } = useNotificador();
-    const nomeDoProjeto = ref("");
+    
+    const nomeDoProjeto = ref("")
 
     if (props.id) {
       const projeto = store.state.projeto.projetos.find(
         (proj) => proj.id == props.id
       );
       nomeDoProjeto.value = projeto?.nome || "";
+    }
+
+    const lidarComSucesso = () => {
+      nomeDoProjeto.value = "";
+      notificar(
+        TipoNotificacao.SUCESSO,
+        "Excelente!",
+        "O projeto foi cadastrado com sucesso!"
+      );
+      router.push("/projetos");
     }
 
     const salvar = () => {
@@ -61,21 +74,11 @@ export default defineComponent({
           .dispatch(CADASTRAR_PROJETO, nomeDoProjeto.value)
           .then(() => lidarComSucesso());
       }
-    };
-
-    const lidarComSucesso = () => {
-      nomeDoProjeto.value = "";
-      notificar(
-        TipoNotificacao.SUCESSO,
-        "Excelente!",
-        "O projeto foi cadastrado com sucesso!"
-      );
-      router.push("/projetos");
-    };
+    }
 
     return {
       nomeDoProjeto,
-      salvar,
+      salvar
     };
   },
 });

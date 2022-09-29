@@ -21,7 +21,7 @@ import { defineComponent } from "vue";
 import Cronometro from "./Cronometro.vue";
 
 export default defineComponent({
-    // eslint-disable-next-line 
+  // eslint-disable-next-line
   name: "Temporizador",
   emits: ['aoFinalizarTarefa'],
   components: {
