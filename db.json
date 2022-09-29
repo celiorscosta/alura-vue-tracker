@@ -7,6 +7,10 @@
     {
       "id": 2,
       "nome": "ByteBank 2.1"
+    },
+    {
+      "id": 3,
+      "nome": "Estudando padroes de arquitetura"
     }
   ],
   "tarefas": [
@@ -36,6 +40,15 @@
         "nome": "ByteBank 2.1"
       },
       "id": 3
+    },
+    {
+      "duracaoEmSegundos": 8,
+      "descricao": "Estudando Composition Vue",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker 3.0"
+      },
+      "id": 4
     }
   ]
 }
